@@ -1,1 +1,1 @@
-web: gunicorn web_fingerprint_authn.wsgi --log-file 
+web: gunicorn web_fingerprint_authn.wsgi --log-file -
