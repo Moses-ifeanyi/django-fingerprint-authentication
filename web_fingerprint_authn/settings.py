@@ -156,5 +156,5 @@ else:
     FIDO_SERVER_ID=u"localhost"   # Server rp id for FIDO2, it is the full domain of your project
     
 FIDO_SERVER_NAME=u"web_based_fingerprint_authn"
-# MFA_REDIRECT_AFTER_REGISTRATION = 'accounts:index'
+MFA_REDIRECT_AFTER_REGISTRATION = 'accounts:index'
 MFA_SUCCESS_REGISTRATION_MSG = 'fingerprint registration.... success! '
