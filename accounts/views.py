@@ -29,9 +29,9 @@ def login(request):
                     if res: return res
                     return login_user_in(request, username)
             else:
-                err="This student is NOT activated yet."
+                err="This User is NOT activated yet."
         else:
-            err="No student with such matriculation number exists."
+            err="No User with such display name exists."
         return render(request, 'login.html', {"err":err})
     else:
         return render(request, 'login.html')
@@ -42,13 +42,13 @@ def register(request):
         username = request.POST.get('username')    #.replace('/', '')
         display_name = request.POST.get('display-name')
         if not utils.validate_username(username):
-           error = 'Invalid matriculation number'
+           error = 'Invalid display name'
            return render(request, 'register.html', context = {'page_title': "Register", 'error': error})
         if not utils.validate_display_name(display_name):
            error = 'Invalid display name'
            return render(request, 'register.html', context = {'page_title': "Register", 'error': error})
         if User.objects.filter(username=username).exists():
-            error = 'Student already exists.'
+            error = 'user already exists.'
             return render(request, 'register.html', context = {'page_title': "Register", 'error': error})
         else:
             u = User.objects.create(first_name = display_name, password='none', is_superuser=False, username=username,  last_name='', display_name=display_name, email='none', is_staff=False, is_active=True,date_joined=timezone.now())
