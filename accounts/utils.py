@@ -26,7 +26,6 @@ def validate_display_name(display_name):
     if len(display_name) > DISPLAY_NAME_MAX_LENGTH:
         return False
 
-    if not display_name.replace(' ', '').isalnum():
-        return False
-
     return True
+    # if not display_name.replace(' ', '').isalnum():
+    #     return False
