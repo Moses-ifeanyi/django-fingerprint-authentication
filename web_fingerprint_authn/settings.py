@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mfa',
-    'accounts.apps.AccountsConfig',
+    
+    'mfa',                              #new django-mfa2 app added
+    'accounts.apps.AccountsConfig',     #accounts app added. Local apps
 ]
 
 MIDDLEWARE = [
@@ -125,13 +126,12 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = 'accounts.User'
-
+AUTH_USER_MODEL = 'accounts.User' #django new user model
 
 
  #Preferably at the same place where you import your other modules
-MFA_UNALLOWED_METHODS=()   # Methods that shouldn't be allowed for the user e.g ('TOTP','U2F',)
-MFA_LOGIN_CALLBACK="accounts.views.login_user_in"      # A function that should be called by username to login the user in session
+MFA_UNALLOWED_METHODS=()#Methods that shouldn't be allowed for the user e.g ('TOTP','U2F',)
+MFA_LOGIN_CALLBACK="accounts.views.login_user_in"# A function that should be called by username to login the user in session
 MFA_RECHECK=True           # Allow random rechecking of the user
 MFA_REDIRECT_AFTER_REGISTRATION="mfa_home"   # Allows Changing the page after successful registeration
 MFA_SUCCESS_REGISTRATION_MSG = "Go to Security Home" # The text of the link
@@ -147,7 +147,6 @@ PASSWORD_HASHERS += ['mfa.recovery.Hash']
 RECOVERY_ITERATION = 350000 #Number of iteration for recovery code, higher is more secure, but uses more resources for generation and check...
 
 TOKEN_ISSUER_NAME="web_based_fingerprint_authn"      #TOTP Issuer name
-
 if DEBUG: 
     U2F_APPID="https://web-fingerprint-auth.herokuapp.com"    #URL For U2F
     FIDO_SERVER_ID=u"web-fingerprint-auth.herokuapp.com" 

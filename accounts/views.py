@@ -39,7 +39,7 @@ def login(request):
 def register(request):
     if request.method == "POST":
         error = ''
-        username = request.POST.get('username')    #.replace('/', '')
+        username = request.POST.get('username')
         display_name = request.POST.get('display-name')
         if not utils.validate_username(username):
            error = 'Invalid display name'
@@ -51,7 +51,7 @@ def register(request):
             error = 'user already exists.'
             return render(request, 'register.html', context = {'page_title': "Register", 'error': error})
         else:
-            u = User.objects.create(first_name = display_name, password='none', is_superuser=False, username=username,  last_name='', display_name=display_name, email='none', is_staff=False, is_active=True,date_joined=timezone.now())
+            u = User.objects.create(first_name = display_name, password='none', is_superuser=False, username=username,  last_name='last_name', display_name=display_name, email='email', is_staff=False, is_active=True,date_joined=timezone.now())
             u.backend = 'django.contrib.auth.backends.ModelBackend'
             auth.login(request,u)
             return redirect(reverse('start_fido2'))

@@ -23,8 +23,11 @@ import mfa.TrustedDevice
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('mfa/', include('mfa.urls')), #required to use mfa
-    path('devices/add/', mfa.TrustedDevice.add,name="mfa_add_new_trusted_device"), #required if you intend adding some devices
-    path("", include('accounts.urls', namespace='accounts')), #include accounts with namespace
+    path('devices/add/', 
+         mfa.TrustedDevice.add,
+         name="mfa_add_new_trusted_device"), #required if you intend adding some devices
+    path("", include('accounts.urls',
+                     namespace='accounts')), #include accounts with namespace
 ]
 
 if settings.DEBUG:
