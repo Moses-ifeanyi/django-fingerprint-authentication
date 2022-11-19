@@ -131,6 +131,10 @@ AUTH_USER_MODEL = 'accounts.User' #django new user model
 
  #Preferably at the same place where you import your other modules
 MFA_UNALLOWED_METHODS=()#Methods that shouldn't be allowed for the user e.g ('TOTP','U2F',)
+'''
+A function that should be called by
+username to login the user in session
+'''
 MFA_LOGIN_CALLBACK="accounts.views.login_user_in"# A function that should be called by username to login the user in session
 MFA_RECHECK=True           # Allow random rechecking of the user
 MFA_REDIRECT_AFTER_REGISTRATION="mfa_home"   # Allows Changing the page after successful registeration
